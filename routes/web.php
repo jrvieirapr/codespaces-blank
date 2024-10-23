@@ -33,6 +33,10 @@ Route::get('/site/categoria/{categoria}',
 [SiteController::class,'categoria'])
 ->name('site.categoria');
 
+Route::post('/site/produtos/pesquisa',
+[SiteController::class,'pesquisa'])
+->name('site.pesquisa');
+
 // Rotas do carrinho
 Route::get('/carrinho',[CarrinhoController::class,'lista'])
 ->name('site.carrinho');

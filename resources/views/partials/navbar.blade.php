@@ -15,25 +15,18 @@
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
                 </li>
 
-                <!-- Dropdown de Categorias -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Categorias
-                    </a>
-                    <ul class="dropdown-menu">
-                        @foreach($categoriasMenu as $categoria)
-                            <li>
-                                <a class="dropdown-item" href="/site/categoria/{{ $categoria->id }}">
-                                    {{ $categoria->nome }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('carrinho') ? 'active' : '' }}" href="/carrinho">Carrinho</a>
                 </li>
             </ul>
+
+            <form class="d-flex" role="search" action="/site/produtos/pesquisa" method="POST">
+                @csrf
+                <input class="form-control me-2" type="search" id="pesquisa" name="pesquisa"
+                placeholder="Digite o nome do produto" aria-label="Digite o nome do produto">
+                <button class="btn btn-outline-warning" type="submit">Pesquisar</button>
+            </form>
+
 
             <!-- Área de autenticação (alinhado à direita) -->
             <ul class="navbar-nav ms-auto bg-dark text-white p-3 rounded">
@@ -78,8 +71,20 @@
                     <a href="/register" class="nav-link text-white">Registro</a>
                 </li>
                 @endauth
-            </ul>ndauth
             </ul>
         </div>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+    <div class="container">
+        <ul class="navbar-nav me-auto">
+            @foreach($categoriasMenu as $categoria)
+            <li class="nav-item">
+                <a class="nav-link text-white"
+                    href="/site/categoria/{{ $categoria->id }}">
+                    {{ $categoria->nome }}</a>
+            </li>
+            @endforeach
+        </ul>
     </div>
 </nav>
